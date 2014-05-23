@@ -2,7 +2,7 @@ SECTION = "x11/wm"
 DESCRIPTION = "Metacity is the boring window manager for the adult in you. Mutter is metacity + clutter."
 LICENSE = "GPLv2"
 DEPENDS = "startup-notification gsettings-desktop-schemas upower gtk+3 gnome-desktop3 gconf clutter-1.0 cogl-1.0 libxcomposite gdk-pixbuf-native intltool glib-2.0-native"
-RDEPENDS = "gsettings-desktop-schemas"
+RDEPENDS_${PN} = "gsettings-desktop-schemas"
 # gobject-introspection
 inherit gnome update-alternatives
 
@@ -46,11 +46,11 @@ gconftool-2 --config-source=xml::$D${sysconfdir}/gconf/gconf.xml.defaults --dire
 
 gconftool-2 --config-source=xml::$D${sysconfdir}/gconf/gconf.xml.defaults --direct --type bool --set /apps/mutter/general/compositing_manager true
 
-glib-compile-schemas ${datadir}/usr/share/glib-2.0/schemas
+glib-compile-schemas ${datadir}/glib-2.0/schemas
 }
 
 pkg_postrm_${PN} () {
 #!/bin/sh -e
 
-glib-compile-schemas ${datadir}/usr/share/glib-2.0/schemas
+glib-compile-schemas ${datadir}/glib-2.0/schemas
 }
